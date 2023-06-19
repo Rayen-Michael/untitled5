@@ -281,7 +281,9 @@ class TrendingPostController extends GetxController {
 
     try {
       final response = await _apiProvider.voteToPoll(_auth.token, body);
-
+      AppUtility.log(post.id);
+      AppUtility.log(optionId);
+      AppUtility.log(response);
       if (response.isSuccessful) {
         final decodedData = response.data;
         final apiResponse = CommonResponse.fromJson(decodedData);

@@ -3,6 +3,7 @@ abstract class AssetValues {
   static const String avatar = 'assets/images/avatar.png';
   static const String iconDark = 'assets/images/icon_dark.png';
   static const String iconLight = 'assets/images/icon_light.png';
+  static const String FadeWidget = 'assets/images/widget.png';
 }
 
 abstract class RiveAssets {

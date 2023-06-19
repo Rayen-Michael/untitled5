@@ -46,20 +46,38 @@ void main() async {
   await _initPreAppServices();
   final networkService = NetworkController.instance;
   await networkService.init();
-
+  await GetStorage.init();
   runApplication();
+  WidgetErrorHandler();
 
   await initializeFirebaseService();
   await _initPostAppServices();
   //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
 
-  OneSignal.shared.setAppId("5db5727e-b989-432f-8366-51b10047296f");
+  OneSignal.shared.setAppId("f89646bd-6afd-47f3-95f4-68fee12018ea");
 
 // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
   OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
     print("Accepted permission: $accepted");
   });
+}
+
+void WidgetErrorHandler() {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      builder: (context, widget) {
+        Widget error = const Text('...rendering error...');
+        if (widget is Scaffold || widget is Navigator) {
+          error = Scaffold(body: Center(child: error));
+        }
+        ErrorWidget.builder = (errorDetails) => error;
+        if (widget != null) return widget;
+        throw ('widget is null');
+      },
+    );
+  }
 }
 
 void runApplication() {

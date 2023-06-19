@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:uuid/uuid.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social_media_app/constants/assets.dart';
+import 'package:social_media_app/constants/styles.dart';
 
 void main() {
   runApp(BibleTabView());
@@ -22,6 +23,7 @@ class _MyAppState extends State<BibleTabView> {
   FlutterLocalNotificationsPlugin();
 
   String verse = '';
+  String verseReference = '';
 
   static String channelID = Uuid().v4();
 
@@ -48,23 +50,26 @@ class _MyAppState extends State<BibleTabView> {
       final verseData = json.decode(response.body);
       final verseDetails = verseData['verse']['details'];
       final verseText = verseDetails['text'] as String?;
-      final verseReference = verseDetails['reference'] as String?;
-      if (verseText != null && verseReference != null) {
-        final verseString = '$verseText - $verseReference';
+      final verseReference2 = verseDetails['reference'] as String?;
+      if (verseText != null && verseReference2 != null) {
+        final verseString = verseText;
         setState(() {
-          verse = verseString;
+          verse = verseText;
+          verseReference = verseReference2;
         });
         showNotification(verseString);
       } else {
         // Handle the case when 'text' or 'reference' is null
         setState(() {
           verse = 'Rabena Msh Ba2etlak 7aga Enaharda 😂';
+          verseReference = 'mafeesh';
         });
       }
     } else {
       // Handle the case when response status is not 200
       setState(() {
         verse = 'Di Moshkela Kebeera 🥲 2ool/2ooli li rayen besor3a';
+        verseReference = 'mafeesh';
       });
     }
   }
@@ -114,7 +119,7 @@ class _MyAppState extends State<BibleTabView> {
                               bottomRight: Radius.circular(36),
                             ),
                             image : DecorationImage(
-                                image: AssetImage('assets/images/Newproject21.png'),
+                                image: AssetImage(AssetValues.FadeWidget),
                                 fit: BoxFit.fitWidth
                             ),
                           )
@@ -124,7 +129,7 @@ class _MyAppState extends State<BibleTabView> {
                       left: 54,
                       child: Text('Wa2t Ma3 Yasou3', textAlign: TextAlign.left, style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: 'Potta One',
+                          fontFamily: '/assets/fonts/PottaOne-Regular.ttf',
                           fontSize: 24,
                           letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
                           fontWeight: FontWeight.normal,
@@ -135,7 +140,7 @@ class _MyAppState extends State<BibleTabView> {
                       left: 21,
                       child: Text('God Says:', textAlign: TextAlign.left, style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: 'Poppins',
+                          fontFamily: '/assets/fonts/PottaOne-Regular.ttf',
                           fontSize: 24,
                           letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
                           fontWeight: FontWeight.normal,
@@ -145,15 +150,15 @@ class _MyAppState extends State<BibleTabView> {
                       top: 375,
                       left: 88,
                       child: SvgPicture.asset(
-                          'assets/images/vector.svg',
+                          '/assets/images/vector.svg',
                           semanticsLabel: 'vector'
                       )
                   ),Positioned(
                       top: 152,
                       left: 21,
-                      child: Text('Do not merely listen to the word, and so deceive yourselves. Do what it says.', textAlign: TextAlign.left, style: TextStyle(
+                      child: Text(verse, textAlign: TextAlign.left, style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: 'Poppins',
+                          fontFamily: '/assets/fonts/Poppins-Regular.ttf',
                           fontSize: 16,
                           letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
                           fontWeight: FontWeight.normal,
@@ -172,9 +177,9 @@ class _MyAppState extends State<BibleTabView> {
                   ),Positioned(
                       top: 220,
                       left: 28,
-                      child: Text('James 1:22', textAlign: TextAlign.left, style: TextStyle(
+                      child: Text(verseReference, textAlign: TextAlign.left, style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: 'Poppins',
+                          fontFamily: '/assets/fonts/Poppins-Bold.ttf/',
                           fontSize: 16,
                           letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
                           fontWeight: FontWeight.normal,
@@ -232,7 +237,7 @@ class _MyAppState extends State<BibleTabView> {
                       top: 48,
                       left: 26,
                       child: SvgPicture.asset(
-                          'assets/images/vector.svg',
+                          '/assets/images/vector.svg',
                           semanticsLabel: 'vector'
                       )
                   ),Positioned(
@@ -277,7 +282,7 @@ class _MyAppState extends State<BibleTabView> {
                       top: 368,
                       left: 162,
                       child: SvgPicture.asset(
-                          'assets/images/vector.svg',
+                          '/assets/images/vector.svg',
                           semanticsLabel: 'vector'
                       )
                   ),Positioned(
@@ -295,7 +300,7 @@ class _MyAppState extends State<BibleTabView> {
                       top: 591,
                       left: 157,
                       child: SvgPicture.asset(
-                          'assets/images/vector.svg',
+                          '/assets/images/vector.svg',
                           semanticsLabel: 'vector'
                       )
                   ),const Positioned(

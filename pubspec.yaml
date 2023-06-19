@@ -150,4 +150,4 @@ flutter:
       fonts:
         - asset: assets/fonts/MugeRegular.ttf
 assets:
-  - assets/sounds/notification_sound.mp3
+  - assets/sounds/notification_sound.wav

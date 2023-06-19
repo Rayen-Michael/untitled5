@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:social_media_app/apis/providers/api_provider.dart';
 import 'package:social_media_app/constants/assets.dart';
 import 'package:social_media_app/constants/colors.dart';
 import 'package:social_media_app/constants/dimens.dart';
@@ -44,7 +45,6 @@ abstract class AppUtility {
     }
   }
 
-  /// Close any open snack bar.
 
   static void closeSnackBar() {
     if (Get.isSnackbarOpen) Get.back<void>();

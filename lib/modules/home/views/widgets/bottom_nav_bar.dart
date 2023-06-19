@@ -49,9 +49,7 @@ class NxBottomNavBar extends StatelessWidget {
               children: [
                 _buildHomeIconBtn(logic, context),
                 _buildTrendingIconBtn(logic, context),
-                _buildChatIconBtn(logic, context),
                 _buildNotificationIconBtn(logic, context),
-                _buildBibleIconBtn(logic, context)
 
               ],
             ),
@@ -81,29 +79,6 @@ class NxBottomNavBar extends StatelessWidget {
     );
   }
 
-  GetBuilder<ChatController> _buildChatIconBtn(
-      HomeController logic, BuildContext context) {
-    return GetBuilder<ChatController>(
-      builder: (con) {
-        var isUnreadMessages = con.lastMessageList
-            .map((e) =>
-                e.receiverId ==
-                    ProfileController.find.profileDetails!.user!.id &&
-                e.seen == false)
-            .contains(true);
-
-        return BottomNavItem(
-          icon: Icons.messenger,
-          iconColor: Theme.of(context).textTheme.bodyLarge!.color,
-          isActive: logic.currentPageIndex == 2,
-          itemsCount: 5,
-          onTap: () => logic.changePage(2),
-          showBadge: isUnreadMessages ? true : false,
-        );
-      },
-    );
-  }
-
   BottomNavItem _buildTrendingIconBtn(
       HomeController logic, BuildContext context) {
     return BottomNavItem(
@@ -112,19 +87,6 @@ class NxBottomNavBar extends StatelessWidget {
       isActive: logic.currentPageIndex == 1,
       itemsCount: 5,
       onTap: () => logic.changePage(1),
-    );
-  }
-
-  BottomNavItem _buildBibleIconBtn(
-      HomeController logic, BuildContext context) {
-    return BottomNavItem(
-      icon: logic.currentPageIndex == 1
-          ? FontAwesomeIcons.bookBible
-          : FontAwesomeIcons.bookBible,
-      iconColor: Theme.of(context).textTheme.bodyLarge!.color,
-      isActive: logic.currentPageIndex == 1,
-      itemsCount: 5,
-      onTap: () => logic.changePage(5),
     );
   }
 

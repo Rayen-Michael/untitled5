@@ -258,7 +258,7 @@ abstract class StringValues {
 
   static const maxVideoLimitWarning = 'You can select maximum 10 videos';
   static const mentions = "Mentions";
-  static const message = 'message';
+  static const message = 'Chat (Not Working)';
   static const messagePrivacy = 'Message Privacy';
   static const messagePrivacyDesc = 'Who can send you messages?';
   static const messageRequestPrivacy = 'Message Request Privacy';
