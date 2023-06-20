@@ -54,7 +54,7 @@ android {
         release {
             keyAlias keystoreProperties['upload']
             keyPassword keystoreProperties['Rayen012011']
-            storeFile keystoreProperties['Users/Rayen/upload-keystore.jks'] ? file(keystoreProperties['Users/Rayen/upload-keystore.jks']) : null
+            storeFile keystoreProperties['../upload-keystore.jks'] ? file(keystoreProperties['../upload-keystore.jks']) : null
             storePassword keystoreProperties['Rayen012011']
         }
     }
