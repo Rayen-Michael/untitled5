@@ -3,7 +3,7 @@ abstract class AppUrls {
   static const addChangePhoneEndpoint = '/add-change-phone';
   static const addCommentEndpoint = '/add-comment';
   static const addCommentReplyEndpoint = '/add-comment-reply';
-  static const baseUrl = 'https://elegant-kilt-jay.cyclic.app/api/v1';
+  static const baseUrl = 'https://tiny-gray-coyote-cuff.cyclic.app/';
   static const blockUserEndpoint = '/block-user';
   static const cancelFollowRequestEndpoint = '/cancel-follow-request';
   static const changeEmailEndpoint = '/change-email';
