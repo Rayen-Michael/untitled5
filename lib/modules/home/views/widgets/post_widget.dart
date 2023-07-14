@@ -230,7 +230,7 @@ class PostWidget extends StatelessWidget {
               ),
               Dimens.boxHeight8,
               Text(
-                '${post.pollEndsAt!.getPollDurationLeft()}',
+                post.pollEndsAt!.getPollDurationLeft(),
                 style: AppStyles.style13Normal.copyWith(
                   color: isExpired
                       ? Theme.of(context).textTheme.titleMedium!.color
@@ -506,10 +506,11 @@ class PostWidget extends StatelessWidget {
           showBorder: false,
           onTap: () {
             AppUtility.closeBottomSheet();
-            AppUtility.showShareDialog(
-              context,
-              '${StringValues.websiteUrl}/post/${post.id}',
-            );
+            // AppUtility.showShareDialog(
+            //   context,
+            //   '${StringValues.websiteUrl}/post/${post.id}',
+            // ); Lessa Nichil ma3amaloosh
+            AppUtility.showSnackBar("Still Working On It", StringValues.error);
           },
           leading: Icon(
             Icons.share,

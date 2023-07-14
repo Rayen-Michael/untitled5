@@ -481,7 +481,7 @@ class ChatController extends GetxController {
 
     try {
       final response = await _apiProvider.getAllLastMessages(_auth.token);
-      AppUtility.log(_auth.token);
+
       if (response.isSuccessful) {
         final decodedData = response.data;
         setLastMessageData = ChatMessageListResponse.fromJson(decodedData);

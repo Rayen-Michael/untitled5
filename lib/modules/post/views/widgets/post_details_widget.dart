@@ -211,7 +211,7 @@ class PostDetailsWidget extends StatelessWidget {
               Dimens.boxHeight8,
               Flexible(
                 child: Text(
-                  '${post.pollEndsAt!.getPollDurationLeft()}',
+                  post.pollEndsAt!.getPollDurationLeft(),
                   style: AppStyles.style13Normal.copyWith(
                     color: isExpired
                         ? Theme.of(context).textTheme.titleMedium!.color
@@ -304,8 +304,6 @@ class PostDetailsWidget extends StatelessWidget {
                 _buildLikeCount(),
                 Dimens.boxWidth16,
                 _buildCommentCount(),
-                Dimens.boxWidth16,
-                _buildRepostCount(),
               ],
             ),
           ),
@@ -380,38 +378,28 @@ class PostDetailsWidget extends StatelessWidget {
                 ),
 
                 /// RePost Button
-                Padding(
-                  padding: Dimens.edgeInsets8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.repeat_outlined,
-                        size: Dimens.twenty,
-                        color: Theme.of(context).textTheme.titleMedium!.color,
-                      ),
-                      Dimens.boxWidth2,
-                      Text(
-                        '${0}'.toCountingFormat(),
-                        style: AppStyles.style13Normal.copyWith(
-                          color: Theme.of(context).textTheme.titleMedium!.color,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                /// Share Button
-                Padding(
-                  padding: Dimens.edgeInsets8,
-                  child: Icon(
-                    Icons.share_outlined,
-                    size: Dimens.twenty,
-                    color: Theme.of(context).textTheme.titleMedium!.color,
-                  ),
-                ),
+                // Padding(
+                //   padding: Dimens.edgeInsets8,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     mainAxisSize: MainAxisSize.min,
+                //     children: [
+                //       Icon(
+                //         Icons.repeat_outlined,
+                //         size: Dimens.twenty,
+                //         color: Theme.of(context).textTheme.titleMedium!.color,
+                //       ),
+                //       Dimens.boxWidth2,
+                //       Text(
+                //         '${0}'.toCountingFormat(),
+                //         style: AppStyles.style13Normal.copyWith(
+                //           color: Theme.of(context).textTheme.titleMedium!.color,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

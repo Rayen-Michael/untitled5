@@ -128,7 +128,7 @@ class ChangePhoneView extends StatelessWidget {
                             child: Padding(
                               padding: Dimens.edgeInsets8,
                               child: Text(
-                                '${logic.countryCode.dialCode}',
+                                logic.countryCode.dialCode,
                                 style: AppStyles.style14Bold.copyWith(
                                   color: Theme.of(context)
                                       .textTheme

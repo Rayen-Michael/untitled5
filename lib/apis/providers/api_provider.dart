@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:social_media_app/app_services/network_controller.dart';
 import 'package:social_media_app/app_services/route_service.dart';
@@ -29,6 +30,23 @@ class ApiProvider {
 
   final http.Client _client;
   final _networkService = NetworkController.instance;
+
+
+//Onesignal Notificaitons Route:
+  // Future<ResponseData> saveFcmToken(String token) async {
+  //   final playerId = await OneSignalService.getPlayerId();
+  //   final response = await _catchAsyncApiError(
+  //     endPoint: AppUrls.fcmTokenEndpoint,
+  //     method: 'POST',
+  //     body: {"fcmToken": playerId},
+  //     feature: 'Save FCM Token',
+  //     headers: {"authorization": "Bearer $token"},
+  //   );
+  //   AppUtility.log("Dah el FCM Token eli fi el api provider: $playerId");
+  //   return response;
+  // }
+
+
 
   /// --------------------------------------------------------------------------
 
@@ -816,31 +834,66 @@ class ApiProvider {
     return response;
   }
 
-  /// Check Username Availability
-  Future<ResponseData> checkUsername(String token, String uname) async {
-    final response = await _catchAsyncApiError(
-      endPoint: AppUrls.checkUsernameEndpoint,
-      method: 'GET',
-      feature: 'Check Username',
-      headers: {"authorization": "Bearer $token"},
-      queryParams: {'username': uname},
-    );
+   /// Check Username Availability
+  Future<http.Response> checkUsername(String token, String uname) async {
+    final headers = {
+      'Content-Type': 'application/json',
+    };
 
+    final body = jsonEncode({
+      'uname': uname, // Replace with the username you want to check
+    });
+    final response = await http.post(
+      Uri.parse("$baseUrl${AppUrls.checkUsernameEndpoint}"),
+      headers: headers,
+      body: body,
+    );
     return response;
   }
+
+
+  // /// Check Username Availability
+  // Future<ResponseData> checkUsername2(String token, String uname) async {
+  //   final response = await _catchAsyncApiError(
+  //     endPoint: AppUrls.checkUsernameEndpoint,
+  //     method: 'POST',
+  //     feature: 'Check Username',
+  //     headers: {"authorization": "Bearer $token"},
+  //     queryParams: {'username': uname},
+  //   );
+  //   return response;
+  // }
+
 
   /// Change Username
-  Future<ResponseData> changeUsername(String token, String uname) async {
-    final response = await _catchAsyncApiError(
-      endPoint: AppUrls.changeUsernameEndpoint,
-      method: 'POST',
-      feature: 'Change Username',
-      headers: {"authorization": "Bearer $token"},
-      body: {'username': uname},
-    );
+  Future<http.Response> changeUsername(String token, String uname) async {
+    final headers = {
+      'Content-Type': 'application/json',
+      'authorization': 'Bearer $token'
+    };
 
+    final body = jsonEncode({
+      'uname': uname, // Replace with the username you want to check
+    });
+    final response = await http.post(
+      Uri.parse("$baseUrl${AppUrls.changeUsernameEndpoint}"),
+      headers: headers,
+      body: body,
+    );
     return response;
   }
+
+  // Future<ResponseData> changeUsername(String token, String uname) async {
+  //   final response = await _catchAsyncApiError(
+  //     endPoint: AppUrls.changeUsernameEndpoint,
+  //     method: 'POST',
+  //     feature: 'Change Username',
+  //     headers: {"authorization": "Bearer $token"},
+  //     body: {'username': uname},
+  //   );
+  //
+  //   return response;
+  // }
 
   /// --------------------------------------------------------------------------
 
@@ -997,7 +1050,7 @@ class ApiProvider {
   /// Search -------------------------------------------------------------------
 
   /// Search Tag
-  Future<ResponseData> searchTag(String token, String text,
+  Future<http.Response> searchTag(String token, String text,
       {int? page, int? limit}) async {
     var queryParameters = <String, dynamic>{};
 

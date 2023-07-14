@@ -49,6 +49,7 @@ class PostPreviewView extends StatelessWidget {
 
   NxAppBar _buildAppBar(Profile profile, BuildContext context) {
     return NxAppBar(
+      padding: Dimens.edgeInsetsDefault,
       child: Expanded(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +60,6 @@ class PostPreviewView extends StatelessWidget {
           ],
         ),
       ),
-      padding: Dimens.edgeInsetsDefault,
     );
   }
 

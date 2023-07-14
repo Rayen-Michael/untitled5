@@ -312,7 +312,7 @@ class AppUpdateView extends StatelessWidget {
         ),
         Dimens.boxHeight8,
         Text(
-          '$downloadSpeed',
+          downloadSpeed,
           style: AppStyles.style14Bold.copyWith(
             color: Theme.of(context).textTheme.bodyLarge!.color,
           ),

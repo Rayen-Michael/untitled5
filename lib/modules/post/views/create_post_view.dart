@@ -47,6 +47,7 @@ class CreatePostView extends StatelessWidget {
 
   NxAppBar _buildAppBar(Profile profile, BuildContext context) {
     return NxAppBar(
+      padding: Dimens.edgeInsetsDefault,
       child: Expanded(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,7 +61,6 @@ class CreatePostView extends StatelessWidget {
           ],
         ),
       ),
-      padding: Dimens.edgeInsetsDefault,
     );
   }
 

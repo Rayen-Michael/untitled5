@@ -34,14 +34,17 @@ class NotificationService {
     int? id,
     String? channelId,
     String? channelName,
-    String? largeIcon,
     String? groupKey,
   }) async {
     ByteArrayAndroidBitmap? androidBitmap;
-    if (largeIcon != null) {
-      var bodyBytes = await _getImageBytes(largeIcon);
-      androidBitmap = ByteArrayAndroidBitmap.fromBase64String(bodyBytes);
-    }
+    // if (largeIcon != null) {
+    //   var bodyBytes = await _getImageBytes(largeIcon);
+    //   androidBitmap = ByteArrayAndroidBitmap.fromBase64String(bodyBytes);
+    // }
+    // if (largeIcon == null) {
+    //   var bodyBytes = await _getImageBytes(largeIcon);
+    //   androidBitmap = ByteArrayAndroidBitmap.fromBase64String(bodyBytes);
+    // }
     var androidNot = AndroidNotificationDetails(
       channelId ?? 'General Notifications',
       channelName ?? 'General Notifications',
@@ -49,7 +52,6 @@ class NotificationService {
       priority: Priority.max,
       importance: Importance.max,
       enableLights: true,
-      largeIcon: androidBitmap != null ? androidBitmap : null,
     );
 
     var iosNot = const DarwinNotificationDetails(
@@ -135,13 +137,13 @@ class NotificationService {
     largeIconUrl != null ? await _getImageBytes(largeIconUrl) : null;
     final bigPictureByteString = await _getImageBytes(bigPictureUrl);
 
-    final largeIcon = largeIconByteString != null
-        ? ByteArrayAndroidBitmap.fromBase64String(largeIconByteString)
-        : null;
+    // final largeIcon = largeIconByteString != null
+    //     ? ByteArrayAndroidBitmap.fromBase64String(largeIconByteString)
+    //     : null;
 
     final bigPictureStyleInformation = BigPictureStyleInformation(
       ByteArrayAndroidBitmap.fromBase64String(bigPictureByteString),
-      largeIcon: largeIcon,
+      // largeIcon: largeIcon,
       contentTitle: title,
       htmlFormatContentTitle: true,
       summaryText: body,
@@ -152,7 +154,7 @@ class NotificationService {
       channelId ?? 'General Notifications',
       channelName ?? 'General Notifications',
       groupKey: groupKey,
-      playSound: false,
+      playSound: true,
       enableVibration: enableVibration ?? true,
       styleInformation: bigPictureStyleInformation,
     );
@@ -190,9 +192,9 @@ class NotificationService {
       channelId ?? 'General Notifications',
       channelName ?? 'General Notifications',
       groupKey: groupKey,
-      playSound: false,
+      playSound: true,
       enableVibration: enableVibration ?? true,
-      largeIcon: androidBitmap != null ? androidBitmap : null,
+      largeIcon: androidBitmap,
       styleInformation: const DefaultStyleInformation(true, true),
     );
 
@@ -322,5 +324,11 @@ class NotificationService {
   Future<String> _getImageBytes(String imageUrl) async {
     var response = await http.get(Uri.parse(imageUrl));
     return base64Encode(response.bodyBytes);
-  }
+  // try {
+    
+  // } catch (e) {
+  //   var response = await http.get(Uri.parse("https://res.cloudinary.com/fddf/image/upload/v1684360713/w9s4gvysmmzbot1xzr1i.svg"));
+  //   return base64Encode(response.bodyBytes);
+  // }
+}
 }

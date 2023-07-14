@@ -5,7 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:social_media_app/app_services/notification_service.dart';
 import 'package:social_media_app/utils/utility.dart';
-
+import 'package:http/http.dart' as http;
 @pragma('vm:entry-point')
 Future<void> initializeFirebaseService() async {
   AppUtility.log('Initializing Firebase Service');
@@ -154,15 +154,15 @@ bool setNotificationPlaySound(String type) {
     case 'General Notifications':
       return true;
     case 'Comments':
-      return false;
+      return true;
     case 'Follow Requests':
-      return false;
+      return true;
     case 'Followers':
-      return false;
+      return true;
     case 'Likes':
-      return false;
+      return true;
     default:
-      return false;
+      return true;
   }
 }
 
@@ -170,6 +170,26 @@ bool setNotificationPlaySound(String type) {
 void showNotificationByCategory(
     String type, String title, String body, String? imageUrl) async {
   final notificationService = NotificationService();
+  if (imageUrl == null) {
+  var url = Uri.parse(imageUrl!);
+
+  // ignore: unnecessary_null_comparison
+  if (url.scheme != null && url.host != null) {
+    var response = await http.get(url);
+    response;
+  } else {
+    // Handle the case when the URL is invalid or missing a host
+    print('Invalid URL So I am using the default pic');
+
+  var url = Uri.parse(imageUrl);
+
+  // ignore: unnecessary_null_comparison
+  if (url.scheme != null && url.host != null) {
+    var response = await http.get(url);
+    response;
+    }
+  }
+}
 
   if (!notificationService.isInitialized) {
     await notificationService.initialize();
@@ -180,7 +200,6 @@ void showNotificationByCategory(
       await notificationService.showNotification(
         title: title,
         body: body,
-        largeIcon: imageUrl,
         channelId: 'Chats',
         channelName: 'Chats',
         id: 2,
@@ -190,29 +209,28 @@ void showNotificationByCategory(
       await notificationService.showNotificationWithNoSound(
         title: title,
         body: body,
-        largeIcon: imageUrl,
+        // largeIcon: imageUrl,
         channelId: 'Followers',
         channelName: 'Followers',
         id: 3,
-        enableVibration: false,
+        enableVibration: true,
       );
       break;
     case 'Likes':
-      await notificationService.showBigPictureNotificationWithNoSound(
+      await notificationService.showNotification(
         title: title,
         body: body,
-        bigPictureUrl: imageUrl ?? '',
+        // largeIcon: imageUrl,
         channelId: 'Likes',
         channelName: 'Likes',
         id: 4,
-        enableVibration: false,
       );
       break;
     case 'Comments':
-      await notificationService.showBigPictureNotification(
+      await notificationService.showNotification(
         title: title,
         body: body,
-        bigPictureUrl: imageUrl ?? '',
+        // largeIcon: imageUrl,
         channelId: 'Comments',
         channelName: 'Comments',
         id: 5,
@@ -222,7 +240,7 @@ void showNotificationByCategory(
       await notificationService.showNotificationWithNoSound(
         title: title,
         body: body,
-        largeIcon: imageUrl,
+        // largeIcon: imageUrl,
         channelId: 'Follow Requests',
         channelName: 'Follow Requests',
         id: 6,
@@ -233,7 +251,7 @@ void showNotificationByCategory(
       await notificationService.showNotification(
         title: title,
         body: body,
-        largeIcon: imageUrl,
+        // largeIcon: imageUrl,
         channelId: 'General Notifications',
         channelName: 'General Notifications',
         id: 1,

@@ -41,9 +41,9 @@ class PostController extends GetxController {
     _isLoading.value = true;
     update();
 
-    final _socket = SocketApiProvider();
-    await _socket.init();
-    if (_socket.isConnected) {
+    final socket = SocketApiProvider();
+    await socket.init();
+    if (socket.isConnected) {
       await _chatController.initialize();
     }
 

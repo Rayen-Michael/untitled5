@@ -45,7 +45,7 @@ class SocketApiProvider {
 
   // All socket related functions.
   Future<void> init() async {
-    final _authService = AuthService.find;
+    final authService = AuthService.find;
     AppUtility.log("Socket initializing...");
 
     if (_socket != null && isConnected) {
@@ -53,14 +53,14 @@ class SocketApiProvider {
       return;
     }
 
-    if (_authService.token.isEmpty) {
+    if (authService.token.isEmpty) {
       AppUtility.log("Socket token is empty");
       return;
     }
 
     try {
       _socket = await WebSocket.connect(
-          '${AppUrls.webSocketUrl}?token=${_authService.token}');
+          '${AppUrls.webSocketUrl}?token=${authService.token}');
 
 
 
@@ -77,7 +77,7 @@ class SocketApiProvider {
           _socketEventStream = null;
           _socket = null;
           AppUtility.log("Socket error: $error", tag: 'error');
-          reconnect(_authService.token);
+          reconnect(authService.token);
         },
         onDone: () {
           _socket?.close();
@@ -85,7 +85,7 @@ class SocketApiProvider {
           _socketEventStream = null;
           _socket = null;
           AppUtility.log("Socket done");
-          reconnect(_authService.token);
+          reconnect(authService.token);
         },
       );
     } catch (e) {

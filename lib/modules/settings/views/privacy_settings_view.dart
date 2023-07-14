@@ -8,6 +8,7 @@ import 'package:social_media_app/global_widgets/custom_list_tile.dart';
 import 'package:social_media_app/modules/home/controllers/profile_controller.dart';
 import 'package:social_media_app/routes/route_management.dart';
 
+
 class PrivacySettingsView extends StatelessWidget {
   const PrivacySettingsView({Key? key}) : super(key: key);
 
@@ -136,41 +137,41 @@ class PrivacySettingsView extends StatelessWidget {
 
               Dimens.boxHeight8,
 
-              /// Posts
-              NxListTile(
-                padding: Dimens.edgeInsets12,
-                bgColor: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(Dimens.four),
-                title: Text(
-                  StringValues.postPrivacy,
-                  style: AppStyles.style14Bold,
-                ),
-                subtitle: Text(
-                  StringValues.postPrivacyDesc,
-                  style: AppStyles.style13Normal.copyWith(
-                    color: Theme.of(context).textTheme.titleMedium!.color,
-                  ),
-                ),
-              ),
+              // /// Posts
+              // NxListTile(
+              //   padding: Dimens.edgeInsets12,
+              //   bgColor: Theme.of(context).cardColor,
+              //   borderRadius: BorderRadius.circular(Dimens.four),
+              //   title: Text(
+              //     StringValues.postPrivacy,
+              //     style: AppStyles.style14Bold,
+              //   ),
+              //   subtitle: Text(
+              //     StringValues.postPrivacyDesc,
+              //     style: AppStyles.style13Normal.copyWith(
+              //       color: Theme.of(context).textTheme.titleMedium!.color,
+              //     ),
+              //   ),
+              // ),
 
               Dimens.boxHeight8,
 
-              /// Comments
-              NxListTile(
-                padding: Dimens.edgeInsets12,
-                bgColor: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(Dimens.four),
-                title: Text(
-                  StringValues.commentPrivacy,
-                  style: AppStyles.style14Bold,
-                ),
-                subtitle: Text(
-                  StringValues.commentPrivacyDesc,
-                  style: AppStyles.style13Normal.copyWith(
-                    color: Theme.of(context).textTheme.titleMedium!.color,
-                  ),
-                ),
-              ),
+              // /// Comments
+              // NxListTile(
+              //   padding: Dimens.edgeInsets12,
+              //   bgColor: Theme.of(context).cardColor,
+              //   borderRadius: BorderRadius.circular(Dimens.four),
+              //   title: Text(
+              //     StringValues.commentPrivacy,
+              //     style: AppStyles.style14Bold,
+              //   ),
+              //   subtitle: Text(
+              //     StringValues.commentPrivacyDesc,
+              //     style: AppStyles.style13Normal.copyWith(
+              //       color: Theme.of(context).textTheme.titleMedium!.color,
+              //     ),
+              //   ),
+              // ),
 
               // Dimens.boxHeight8,
 

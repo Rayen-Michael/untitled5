@@ -47,5 +47,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+<array>
+  <string>fetch</string>
+  <string>remote-notification</string>
+</array>
+<key>UILocalNotificationDefaultSoundName</key>
+<string>notification_sound.caf</string> <!-- Replace with your custom sound file name -->
+
 </dict>
 </plist>

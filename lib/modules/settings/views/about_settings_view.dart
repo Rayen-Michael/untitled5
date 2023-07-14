@@ -43,89 +43,37 @@ class AboutSettingsView extends StatelessWidget {
       child: Padding(
         padding: Dimens.edgeInsetsHorizDefault,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             _buildTopPart(context),
             const Spacer(),
-            _buildMiddlePart(context),
-            const Spacer(),
             _buildBottomPart(context),
-            Dimens.boxHeight16,
           ],
         ),
       ),
     );
   }
 
+
   Column _buildTopPart(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start, // Align content to the left
       children: [
-        AppUtility.buildAppLogo(context, fontSize: Dimens.thirtyTwo),
-        RichText(
-          text: TextSpan(
-            text:
-                '${StringValues.version}  ${AppUpdateController.find.version}+${AppUpdateController.find.buildNumber}',
-            style: AppStyles.style14Normal.copyWith(
-              color: Theme.of(context).textTheme.titleMedium!.color,
+        Center( // Center the logo horizontally
+          child: AppUtility.buildAppLogo(context, fontSize: Dimens.thirtyTwo),
+        ),
+        Center( // Center the version text horizontally
+          child: RichText(
+            text: TextSpan(
+              text:
+              '${StringValues.version}  ${AppUpdateController.find.version}+${AppUpdateController.find.buildNumber}',
+              style: AppStyles.style14Normal.copyWith(
+                color: Theme.of(context).textTheme.titleMedium!.color,
+              ),
             ),
           ),
-        ),
-      ],
-    );
-  }
-
-  Column _buildMiddlePart(BuildContext context) {
-    return Column(
-      children: [
-        NxOutlinedButton(
-          label: StringValues.downloadLatestApp,
-          borderColor: Theme.of(context).textTheme.bodyLarge!.color,
-          padding: Dimens.edgeInsets0_8,
-          width: Dimens.screenWidth,
-          height: Dimens.thirtySix,
-          labelStyle: AppStyles.style14Normal.copyWith(
-            color: Theme.of(context).textTheme.bodyLarge!.color,
-          ),
-          onTap: () =>
-              AppUtility.openUrl(Uri.parse(StringValues.appDownloadUrl)),
-        ),
-        Dimens.boxHeight8,
-        NxOutlinedButton(
-          label: StringValues.githubRepo,
-          borderColor: Theme.of(context).textTheme.bodyLarge!.color,
-          padding: Dimens.edgeInsets0_8,
-          width: Dimens.screenWidth,
-          height: Dimens.thirtySix,
-          labelStyle: AppStyles.style14Normal.copyWith(
-            color: Theme.of(context).textTheme.bodyLarge!.color,
-          ),
-          onTap: () => AppUtility.openUrl(Uri.parse(StringValues.appGithubUrl)),
-        ),
-        Dimens.boxHeight8,
-        NxOutlinedButton(
-          label: StringValues.ourWebsite,
-          borderColor: Theme.of(context).textTheme.bodyLarge!.color,
-          padding: Dimens.edgeInsets0_8,
-          width: Dimens.screenWidth,
-          height: Dimens.thirtySix,
-          labelStyle: AppStyles.style14Normal.copyWith(
-            color: Theme.of(context).textTheme.bodyLarge!.color,
-          ),
-          onTap: () => AppUtility.openUrl(Uri.parse(StringValues.websiteUrl)),
-        ),
-        Dimens.boxHeight8,
-        NxOutlinedButton(
-          label: StringValues.joinTelegramChannel,
-          borderColor: Theme.of(context).textTheme.bodyLarge!.color,
-          padding: Dimens.edgeInsets0_8,
-          width: Dimens.screenWidth,
-          height: Dimens.thirtySix,
-          labelStyle: AppStyles.style14Normal.copyWith(
-            color: Theme.of(context).textTheme.bodyLarge!.color,
-          ),
-          onTap: () => AppUtility.openUrl(Uri.parse(StringValues.telegramUrl)),
         ),
       ],
     );
@@ -138,9 +86,7 @@ class AboutSettingsView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               StringValues.developedBy,
@@ -150,16 +96,13 @@ class AboutSettingsView extends StatelessWidget {
               ),
             ),
             Dimens.boxWidth4,
-            Flexible(
-              child: GestureDetector(
-                onTap: () =>
-                    AppUtility.openUrl(Uri.parse(StringValues.portfolioUrl)),
-                child: Text(
-                  StringValues.developerName,
-                  textAlign: TextAlign.center,
-                  style: AppStyles.style14Bold.copyWith(
-                    color: ColorValues.linkColor,
-                  ),
+            GestureDetector(
+              onTap: () => AppUtility.openUrl(Uri.parse(StringValues.portfolioUrl)),
+              child: Text(
+                StringValues.developerName,
+                textAlign: TextAlign.center,
+                style: AppStyles.style14Bold.copyWith(
+                  color: ColorValues.linkColor,
                 ),
               ),
             ),
@@ -172,7 +115,103 @@ class AboutSettingsView extends StatelessWidget {
             color: Theme.of(context).textTheme.titleMedium!.color,
           ),
         ),
+        Text(
+          "", // If you want to add an additional sentence add it here
+          style: AppStyles.style14Normal.copyWith(
+            color: Theme.of(context).textTheme.titleMedium!.color,
+          ),
+        ),
       ],
     );
   }
+
+
+
+  Column _buildMiddlePart(BuildContext context) {
+    return Column(
+      children: [
+        NxOutlinedButton(
+          label: StringValues.downloadLatestApp,
+          borderColor: Theme
+              .of(context)
+              .textTheme
+              .bodyLarge!
+              .color,
+          padding: Dimens.edgeInsets0_8,
+          width: Dimens.screenWidth,
+          height: Dimens.thirtySix,
+          labelStyle: AppStyles.style14Normal.copyWith(
+            color: Theme
+                .of(context)
+                .textTheme
+                .bodyLarge!
+                .color,
+          ),
+          onTap: () =>
+              AppUtility.openUrl(Uri.parse(StringValues.appDownloadUrl)),
+        ),
+        Dimens.boxHeight8,
+        NxOutlinedButton(
+          label: StringValues.githubRepo,
+          borderColor: Theme
+              .of(context)
+              .textTheme
+              .bodyLarge!
+              .color,
+          padding: Dimens.edgeInsets0_8,
+          width: Dimens.screenWidth,
+          height: Dimens.thirtySix,
+          labelStyle: AppStyles.style14Normal.copyWith(
+            color: Theme
+                .of(context)
+                .textTheme
+                .bodyLarge!
+                .color,
+          ),
+          onTap: () => AppUtility.openUrl(Uri.parse(StringValues.appGithubUrl)),
+        ),
+        Dimens.boxHeight8,
+        NxOutlinedButton(
+          label: StringValues.ourWebsite,
+          borderColor: Theme
+              .of(context)
+              .textTheme
+              .bodyLarge!
+              .color,
+          padding: Dimens.edgeInsets0_8,
+          width: Dimens.screenWidth,
+          height: Dimens.thirtySix,
+          labelStyle: AppStyles.style14Normal.copyWith(
+            color: Theme
+                .of(context)
+                .textTheme
+                .bodyLarge!
+                .color,
+          ),
+          onTap: () => AppUtility.showSnackBar("Still Working On It", StringValues.error),
+        ),
+        Dimens.boxHeight8,
+        NxOutlinedButton(
+          label: StringValues.joinTelegramChannel,
+          borderColor: Theme
+              .of(context)
+              .textTheme
+              .bodyLarge!
+              .color,
+          padding: Dimens.edgeInsets0_8,
+          width: Dimens.screenWidth,
+          height: Dimens.thirtySix,
+          labelStyle: AppStyles.style14Normal.copyWith(
+            color: Theme
+                .of(context)
+                .textTheme
+                .bodyLarge!
+                .color,
+          ),
+          onTap: () => AppUtility.openUrl(Uri.parse(StringValues.telegramUrl)),
+        ),
+      ],
+    );
+  }
+
 }

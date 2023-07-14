@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class ColorValues {
   static const Color blackColor = Color.fromARGB(255, 0, 0, 0);
-  static const Color darkBgColor = Color.fromARGB(255, 10, 10, 16);
+  static const Color darkBgColor = Color.fromARGB(255, 23, 23, 23);
   static const Color darkBodyTextColor = Color.fromARGB(255, 240, 240, 240);
   static const Color darkChatBubbleColor = Color.fromARGB(255, 18, 66, 148);
   static const Color darkDialogColor = Color.fromARGB(255, 36, 36, 56);

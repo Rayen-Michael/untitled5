@@ -86,22 +86,22 @@ class SecuritySettingsView extends StatelessWidget {
 
               Dimens.boxHeight8,
 
-              /// 2-FA
-              NxListTile(
-                padding: Dimens.edgeInsets12,
-                bgColor: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(Dimens.four),
-                title: Text(
-                  StringValues.twoFaAuth,
-                  style: AppStyles.style14Bold,
-                ),
-                subtitle: Text(
-                  StringValues.no,
-                  style: AppStyles.style13Normal.copyWith(
-                    color: Theme.of(context).textTheme.titleMedium!.color,
-                  ),
-                ),
-              ),
+              // /// 2-FA
+              // NxListTile(
+              //   padding: Dimens.edgeInsets12,
+              //   bgColor: Theme.of(context).cardColor,
+              //   borderRadius: BorderRadius.circular(Dimens.four),
+              //   title: Text(
+              //     StringValues.twoFaAuth,
+              //     style: AppStyles.style14Bold,
+              //   ),
+              //   subtitle: Text(
+              //     StringValues.no,
+              //     style: AppStyles.style13Normal.copyWith(
+              //       color: Theme.of(context).textTheme.titleMedium!.color,
+              //     ),
+              //   ),
+              // ),
 
               Dimens.boxHeight16,
             ],

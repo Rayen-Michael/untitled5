@@ -59,6 +59,7 @@ class ProfileView extends StatelessWidget {
   Widget _buildProfileHeader(ProfileController logic, BuildContext context) {
     return NxAppBar(
       padding: Dimens.edgeInsetsDefault,
+      showBackBtn: true,
       child: Expanded(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +92,6 @@ class ProfileView extends StatelessWidget {
           ],
         ),
       ),
-      showBackBtn: true,
     );
   }
 

@@ -1,0 +1,18 @@
+//Android 10+
+case 'Chats': ❌	
+case 'General Notifications': ✅
+case 'Comments': ✅
+case 'Follow Requests': ✅
+case 'Followers': ✅
+case 'Likes': ✅
+//Android 10+
+
+
+//Android 9
+case 'Chats': 
+case 'General Notifications': ✅
+case 'Comments': ✅
+case 'Follow Requests': ✅
+case 'Followers': ✅
+case 'Likes': ✅
+//Android 9

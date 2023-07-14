@@ -46,6 +46,7 @@ class PollPreviewView extends StatelessWidget {
 
   NxAppBar _buildAppBar(Profile profile, BuildContext context) {
     return NxAppBar(
+      padding: Dimens.edgeInsetsDefault,
       child: Expanded(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +57,6 @@ class PollPreviewView extends StatelessWidget {
           ],
         ),
       ),
-      padding: Dimens.edgeInsetsDefault,
     );
   }
 
@@ -144,7 +144,7 @@ class PollPreviewView extends StatelessWidget {
           Padding(
             padding: Dimens.edgeInsets0_8,
             child: Text(
-              '${DateTime.parse(logic.pollEndsAt).getPollDurationLeft()}',
+              DateTime.parse(logic.pollEndsAt).getPollDurationLeft(),
               style: AppStyles.style13Normal.copyWith(
                 color: ColorValues.primaryColor,
               ),

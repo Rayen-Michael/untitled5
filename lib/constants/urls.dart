@@ -3,7 +3,7 @@ abstract class AppUrls {
   static const addChangePhoneEndpoint = '/add-change-phone';
   static const addCommentEndpoint = '/add-comment';
   static const addCommentReplyEndpoint = '/add-comment-reply';
-  static const baseUrl = 'https://tiny-gray-coyote-cuff.cyclic.app/';
+  static const baseUrl = 'https://long-lime-catfish-coat.cyclic.app/api/v1';
   static const blockUserEndpoint = '/block-user';
   static const cancelFollowRequestEndpoint = '/cancel-follow-request';
   static const changeEmailEndpoint = '/change-email';
@@ -79,5 +79,5 @@ abstract class AppUrls {
   static const verifyOtpFromPhoneEndpoint = '/verify-phone-otp';
   static const verifyPasswordEndpoint = '/verify-password';
   static const voteToPollEndpoint = '/vote-to-poll';
-  static const webSocketUrl = 'wss://dent-phase-jade.glitch.me/api/v1/ws';
+  static const webSocketUrl = 'wss://lime-stormy-bandana.glitch.me/api/v1/ws';
 }

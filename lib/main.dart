@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,6 +38,7 @@ import 'package:social_media_app/services/storage_service.dart';
 import 'package:social_media_app/translations/app_translations.dart';
 import 'package:social_media_app/utils/utility.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:social_media_app/app_services/onesignal_service.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -46,38 +46,22 @@ void main() async {
   await _initPreAppServices();
   final networkService = NetworkController.instance;
   await networkService.init();
-  await GetStorage.init();
+  // AppUtility.log(OneSignalService.getPlayerId());
   runApplication();
-  WidgetErrorHandler();
 
   await initializeFirebaseService();
   await _initPostAppServices();
   //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
 
-  OneSignal.shared.setAppId("f89646bd-6afd-47f3-95f4-68fee12018ea");
+  OneSignal.shared.setAppId("5db5727e-b989-432f-8366-51b10047296f");
 
 // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
   OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
     print("Accepted permission: $accepted");
   });
-}
-
-void WidgetErrorHandler() {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, widget) {
-        Widget error = const Text('...rendering error...');
-        if (widget is Scaffold || widget is Navigator) {
-          error = Scaffold(body: Center(child: error));
-        }
-        ErrorWidget.builder = (errorDetails) => error;
-        if (widget != null) return widget;
-        throw ('widget is null');
-      },
-    );
-  }
+  // final playerId = await OneSignalService.getPlayerId();
+  // AppUtility.log("PlayerID: $playerId");
 }
 
 void runApplication() {
@@ -311,7 +295,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({required Key key, required this.title}) : super(key: key);
+  const MyHomePage({required Key key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -342,14 +326,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               _statusText,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _createNewChannel,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

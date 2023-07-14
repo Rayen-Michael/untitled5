@@ -43,6 +43,7 @@ class CreatePollView extends StatelessWidget {
 
   NxAppBar _buildAppBar(Profile profile, BuildContext context) {
     return NxAppBar(
+      padding: Dimens.edgeInsetsDefault,
       child: Expanded(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +57,6 @@ class CreatePollView extends StatelessWidget {
           ],
         ),
       ),
-      padding: Dimens.edgeInsetsDefault,
     );
   }
 
@@ -270,7 +270,7 @@ class CreatePollView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '${StringValues.pollLength}',
+                StringValues.pollLength,
                 style: AppStyles.style18Bold.copyWith(
                   color: Theme.of(context).textTheme.bodyLarge!.color,
                 ),
@@ -278,7 +278,7 @@ class CreatePollView extends StatelessWidget {
               GestureDetector(
                   onTap: AppUtility.closeBottomSheet,
                   child: Text(
-                    '${StringValues.done}',
+                    StringValues.done,
                     style: AppStyles.style18Bold.copyWith(
                       color: ColorValues.primaryColor,
                     ),

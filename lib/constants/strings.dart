@@ -26,7 +26,7 @@ abstract class StringValues {
   static const appDescription = 'Connect with the world!';
   static const appDownloadUrl = '0';
   static const appGithubUrl =
-      'https://github.com/nixrajput/social-media-app-flutter';
+      '';
 
   static const appName = 'NCEC';
   static const appUpdateAvailable = 'App update available';
@@ -80,7 +80,7 @@ abstract class StringValues {
       'Here are the community guidelines for NCEC.';
 
   static const communityGuidelinesUrl =
-      'https://nixlab.co.in/community-guidelines';
+      'https://bluevioletsnivelingcontrolflowgraph.ryanmichaelll.repl.co/communityguidelines.html';
 
   static const confirm = 'Confirm';
   static const confirmPassword = 'Confirm Password';
@@ -228,7 +228,7 @@ abstract class StringValues {
   static const hours = 'Hours';
   static const info = 'info';
   static const internetConnError = 'Internet connection is poor or unavailable';
-  static const joinTelegramChannel = 'Join Telegram Channel';
+  static const joinTelegramChannel = 'Chat Rayen On Whatsapp';
   static const lastName = 'Last Name';
   static const learnMore = 'Learn More';
   static const left = 'Left';
@@ -250,7 +250,7 @@ abstract class StringValues {
   static const logout = 'Logout';
   static const logoutAllDevices = 'Logout All Other Devices';
   static const logoutSuccessful = 'Logged out successfully.';
-  static const madeWithLove = 'Made with the help of jesus ❤️by Rayen';
+  static const madeWithLove = 'Made with the help of jesus ❤️ by Rayen';
   static const male = 'Male';
   static const maxImageLimitWarning = 'You can select maximum 10 images';
   static const maxImageVideoLimitWarning =
@@ -258,7 +258,7 @@ abstract class StringValues {
 
   static const maxVideoLimitWarning = 'You can select maximum 10 videos';
   static const mentions = "Mentions";
-  static const message = 'Chat (Not Working)';
+  static const message = 'message';
   static const messagePrivacy = 'Message Privacy';
   static const messagePrivacyDesc = 'Who can send you messages?';
   static const messageRequestPrivacy = 'Message Request Privacy';
@@ -281,7 +281,7 @@ abstract class StringValues {
   static const next = 'Next';
 
   /// Urls
-  static const nixlabStoreId = 'com.nixlab.NCEC';
+  static const nixlabStoreId = 'com.rayen.shababncec';
 
   static const no = 'No';
   static const noComments = 'No comments yet';
@@ -337,7 +337,7 @@ abstract class StringValues {
   static const pollLengthError = 'Select poll length';
   static const pollLengthHelp = 'Select the length of your poll';
   static const pollOptionEmptyError = 'Option cannot be empty';
-  static const portfolioUrl = 'https://nixrajput.nixlab.co.in';
+  static const portfolioUrl = 'https://ryan.ryanmichaelll.repl.co';
   static const post = 'Post';
   static const postDetailsNotFound = 'Post deleted or archived';
   static const postPrivacy = 'Post Privacy';
@@ -352,7 +352,7 @@ abstract class StringValues {
   static const privacy = 'Privacy';
   static const privacyPolicy = 'Privacy Policy';
   static const privacyPolicyDesc = 'Read our privacy policy.';
-  static const privacyPolicyUrl = 'https://nixlab.co.in/privacy-policy';
+  static const privacyPolicyUrl = 'https://bluevioletsnivelingcontrolflowgraph.ryanmichaelll.repl.co';
   static const privacySettingsHelp =
       "Manage what information you see and share on NCEC.";
 
@@ -448,9 +448,9 @@ abstract class StringValues {
   static const system = 'System';
   static const systemDefault = 'System Default';
   static const systemDefaultDesc = 'Use the system default theme';
-  static const telegramChannel = 'Telegram Channel';
-  static const telegramUrl = 'https://telegram.me/nixlab_in';
-  static const termsOfServiceUrl = 'https://nixlab.co.in/terms-of-service';
+  static const telegramChannel = 'Rayens Whatsapp';
+  static const telegramUrl = 'https://wa.me/qr/5746D55QMLU6M1';
+  static const termsOfServiceUrl = 'https://bluevioletsnivelingcontrolflowgraph.ryanmichaelll.repl.co/termsofservice.html';
   static const termsOfUse = 'Terms of Use';
   static const termsOfUseDesc = 'Read our terms of use.';
   static const theme = 'Theme';
@@ -522,7 +522,7 @@ abstract class StringValues {
   static const views = 'Views';
   static const warning = 'warning';
   static const website = 'Website';
-  static const websiteUrl = 'https://nixlab.co.in';
+  static const websiteUrl = '';
   static const welcome = 'Ahlan Beek';
   static const welcomeDescription = 'Login or Register to continue';
   static const whatsOnYourMind = 'What\'s on your mind?';

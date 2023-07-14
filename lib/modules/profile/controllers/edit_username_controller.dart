@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,14 +69,14 @@ class EditUsernameController extends GetxController {
 
     try {
       final response = await _apiProvider.checkUsername(_auth.token, uname);
-
-      if (response.isSuccessful) {
-        final decodedData = response.data;
+      AppUtility.log(_auth.token);
+      if (response.statusCode == 200) {
+        final decodedData = jsonDecode(response.body);
         AppUtility.printLog(decodedData);
         _isUnameAvailable.value = StringValues.success;
         update();
       } else {
-        final decodedData = response.data;
+        final decodedData = jsonDecode(response.body);
         AppUtility.log(decodedData['message'], tag: 'error');
         _isUnameAvailable.value = StringValues.error;
         update();
@@ -102,8 +103,8 @@ class EditUsernameController extends GetxController {
     try {
       final response = await _apiProvider.changeUsername(_auth.token, uname);
 
-      if (response.isSuccessful) {
-        final decodedData = response.data;
+      if (response.statusCode == 200) {
+        final decodedData = jsonDecode(response.body);
         await _profile.fetchProfileDetails(fetchPost: false);
         AppUtility.closeDialog();
         _isLoading.value = false;
@@ -114,7 +115,7 @@ class EditUsernameController extends GetxController {
           StringValues.success,
         );
       } else {
-        final decodedData = response.data;
+        final decodedData = jsonDecode(response.body);
         AppUtility.closeDialog();
         _isLoading.value = false;
         update();

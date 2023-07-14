@@ -1,14 +1,25 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:cloudinary/cloudinary.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:social_media_app/app_services/network_controller.dart';
+import 'package:social_media_app/app_services/route_service.dart';
+import 'package:social_media_app/constants/enums.dart';
+import 'package:social_media_app/constants/urls.dart';
+import 'package:social_media_app/helpers/exceptions.dart';
+import 'package:social_media_app/utils/utility.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:social_media_app/constants/styles.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:social_media_app/constants/dimens.dart';
+import 'package:flutter/material.dart';
 import 'package:social_media_app/apis/models/entities/hashtag.dart';
 import 'package:social_media_app/apis/models/entities/post.dart';
 import 'package:social_media_app/apis/models/responses/hashtag_response.dart';
@@ -105,70 +116,69 @@ class CreatePostController extends GetxController {
     super.onClose();
   }
 
-  // void _checkHashtag(String text) async {
-  //   // final hashRegExp = RegExp(r'\#(\w+)');
-  //   // var start = 0;
-  //   // var totalHashtag = 0;
-  //   // var currentHashtag = '';
-  //   //
-  //   // Iterable<Match> matches = hashRegExp.allMatches(text);
-  //   //
-  //   // totalHashtag = matches.length;
-  //   //
-  //   // var cursorPos = captionTextController.selection.base.offset;
-  //   //
-  //   // currentHashtag = text.substring(start, cursorPos);
-  //   //
-  //   // AppUtility.printLog(totalHashtag);
-  //   // AppUtility.printLog(currentHashtag);
-  // }
+  void _checkHashtag(String text) async {
+    // final hashRegExp = RegExp(r'\#(\w+)');
+    // var start = 0;
+    // var totalHashtag = 0;
+    // var currentHashtag = '';
+    //
+    // Iterable<Match> matches = hashRegExp.allMatches(text);
+    //
+    // totalHashtag = matches.length;
+    //
+    // var cursorPos = captionTextController.selection.base.offset;
+    //
+    // currentHashtag = text.substring(start, cursorPos);
+    //
+    // AppUtility.printLog(totalHashtag);
+    // AppUtility.printLog(currentHashtag);
+  }
 
-  // Future<void> _searchAndGetTags(String tag) async {
-  //   AppUtility.printLog("Search and Get Tags Request");
-  //
-  //   try {
-  //     final response = await _apiProvider.searchTag(_auth.token, tag);
-  //
-  //     final decodedData = jsonDecode(utf8.decode(response.bodyBytes));
-  //
-  //     if (response.statusCode == 200) {
-  //       AppUtility.printLog(decodedData);
-  //       setHashtagData = HashTagResponse.fromJson(decodedData);
-  //       _hashtagList.clear();
-  //       _hashtagList.addAll(_hashtagData.value.results!);
-  //       update();
-  //       if (_hashtagList.isNotEmpty) {
-  //         await _showHashtagsDialog();
-  //       } else {
-  //         AppUtility.closeDialog();
-  //       }
-  //       AppUtility.printLog("Search and Get Tags Success");
-  //     } else {
-  //       AppUtility.printLog(decodedData);
-  //       update();
-  //       AppUtility.printLog("Search and Get Tags Error");
-  //     }
-  //   } on SocketException {
-  //     AppUtility.printLog("Search and Get Tags Error");
-  //     AppUtility.printLog(StringValues.internetConnError);
-  //     AppUtility.showSnackBar(
-  //         StringValues.internetConnError, StringValues.error);
-  //   } on TimeoutException {
-  //     AppUtility.printLog("Search and Get Tags Error");
-  //     AppUtility.printLog(StringValues.connTimedOut);
-  //     AppUtility.showSnackBar(StringValues.connTimedOut, StringValues.error);
-  //   } on FormatException catch (e) {
-  //     AppUtility.printLog("Search and Get Tags Error");
-  //     AppUtility.printLog(StringValues.formatExcError);
-  //     AppUtility.printLog(e);
-  //     AppUtility.showSnackBar(StringValues.errorOccurred, StringValues.error);
-  //   } catch (exc) {
-  //     AppUtility.printLog("Search and Get Tags Error");
-  //     AppUtility.printLog(StringValues.errorOccurred);
-  //     AppUtility.printLog(exc);
-  //     AppUtility.showSnackBar(StringValues.errorOccurred, StringValues.error);
-  //   }
-  // }
+  Future<void> _searchAndGetTags(String tag) async {
+    AppUtility.printLog("Search and Get Tags Request");
+    try {
+      final response = await _apiProvider.searchTag(_auth.token, tag);
+  
+      final decodedData = jsonDecode(utf8.decode(response.bodyBytes)); 
+
+      if (response.statusCode == 200) {
+        AppUtility.printLog(decodedData);
+        setHashtagData = HashTagResponse.fromJson(decodedData);
+        _hashtagList.clear();
+        _hashtagList.addAll(_hashtagData.value.results!);
+        update();
+        if (_hashtagList.isNotEmpty) {
+          await _showHashtagsDialog();
+        } else {
+          AppUtility.closeDialog();
+        }
+        AppUtility.printLog("Search and Get Tags Success");
+      } else {
+        AppUtility.printLog(decodedData);
+        update();
+        AppUtility.printLog("Search and Get Tags Error");
+      }
+    } on SocketException {
+      AppUtility.printLog("Search and Get Tags Error");
+      AppUtility.printLog(StringValues.internetConnError);
+      AppUtility.showSnackBar(
+          StringValues.internetConnError, StringValues.error);
+    } on TimeoutException {
+      AppUtility.printLog("Search and Get Tags Error");
+      AppUtility.printLog(StringValues.connTimedOut);
+      AppUtility.showSnackBar(StringValues.connTimedOut, StringValues.error);
+    } on FormatException catch (e) {
+      AppUtility.printLog("Search and Get Tags Error");
+      AppUtility.printLog(StringValues.formatExcError);
+      AppUtility.printLog(e);
+      AppUtility.showSnackBar(StringValues.errorOccurred, StringValues.error);
+    } catch (exc) {
+      AppUtility.printLog("Search and Get Tags Error");
+      AppUtility.printLog(StringValues.errorOccurred);
+      AppUtility.printLog(exc);
+      AppUtility.showSnackBar(StringValues.errorOccurred, StringValues.error);
+    }
+  }
 
   Future<void> _createNewPost() async {
     final cloudinary = Cloudinary.unsignedConfig(cloudName: cloudName);
@@ -550,13 +560,13 @@ class CreatePostController extends GetxController {
 
   void goToPostPreview() {
     if (_pickedFileList.isEmpty) return;
-    if (_pickedFileList.length > 10) {
-      AppUtility.showSnackBar(
-        'Post can\'t have more than 10 images or videos',
-        '',
-      );
-      return;
-    }
+    // if (_pickedFileList.length > 10) {
+    //   AppUtility.showSnackBar(
+    //     'Post can\'t have more than 10 images or videos',
+    //     '',
+    //   );
+    //   return;
+    // }
     RouteManagement.goToPostPreviewView();
   }
 
@@ -567,33 +577,33 @@ class CreatePostController extends GetxController {
     await _createNewPost();
   }
 
-// Future<void> _showHashtagsDialog() async {
-//   AppUtility.showSimpleDialog(
-//     Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         Dimens.boxHeight8,
-//         SingleChildScrollView(
-//           child: Padding(
-//             padding: Dimens.edgeInsets0_16,
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               children: _hashtagList
-//                   .map(
-//                     (e) => Text(
-//                       '#${e.name}',
-//                       style: AppStyles.style18Bold,
-//                     ),
-//                   )
-//                   .toList(),
-//             ),
-//           ),
-//         ),
-//         Dimens.boxHeight8,
-//       ],
-//     ),
-//     barrierDismissible: true,
-//   );
-// }
+Future<void> _showHashtagsDialog() async {
+  AppUtility.showSimpleDialog(
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Dimens.boxHeight8,
+        SingleChildScrollView(
+          child: Padding(
+            padding: Dimens.edgeInsets0_16,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: _hashtagList
+                  .map(
+                    (e) => Text(
+                      '#${e.name}',
+                      style: AppStyles.style18Bold,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        ),
+        Dimens.boxHeight8,
+      ],
+    ),
+    barrierDismissible: true,
+  );
+}
 }

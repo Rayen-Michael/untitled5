@@ -135,7 +135,7 @@ class CreatePollController extends GetxController {
         minuteStr = '$pollLengthMinutes ${StringValues.minutes}';
       }
 
-      return '$minuteStr';
+      return minuteStr;
     }
   }
 

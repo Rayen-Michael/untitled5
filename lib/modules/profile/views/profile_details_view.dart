@@ -16,8 +16,6 @@ import 'package:social_media_app/modules/home/controllers/profile_controller.dar
 import 'package:social_media_app/modules/profile/controllers/edit_profile_picture_controller.dart';
 import 'package:social_media_app/routes/route_management.dart';
 import 'package:social_media_app/utils/utility.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 
 class ProfileDetailsView extends StatelessWidget {
   const ProfileDetailsView({Key? key}) : super(key: key);
@@ -265,11 +263,7 @@ class ProfileDetailsView extends StatelessWidget {
                       padding: Dimens.edgeInsets12,
                       bgColor: Theme.of(Get.context!).cardColor,
                       borderRadius: BorderRadius.circular(Dimens.four),
-                      leading: CachedNetworkImage(
-                        imageUrl: "https://res.cloudinary.com/fddf/image/upload/v1684360713/uslp7zd0i7uq6iw5jqmk.svg", // Replace with your icon URL
-                        placeholder: (context, url) => CircularProgressIndicator(), // Display a loading indicator while the image is being fetched
-                        errorWidget: (context, url, error) => Icon(Icons.error), // Display an error icon if the image fails to load
-                      ),
+                      leading: const Icon(Icons.male_outlined),
                       title: Text(
                         StringValues.gender,
                         style: AppStyles.style12Normal.copyWith(

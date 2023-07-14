@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GlobalStringKey extends GlobalObjectKey {
-  GlobalStringKey(super.value);
+  const GlobalStringKey(super.value);
 
   @override
   bool operator ==(Object other) =>
